@@ -5,18 +5,18 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : libkdegames
-Version  : 18.08.0
-Release  : 1
-URL      : https://download.kde.org/stable/applications/18.08.0/src/libkdegames-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/libkdegames-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/libkdegames-18.08.0.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 18.12.2
+Release  : 2
+URL      : https://download.kde.org/stable/applications/18.12.2/src/libkdegames-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/libkdegames-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/libkdegames-18.12.2.tar.xz.sig
+Summary  : Common code and data for many KDE games
 Group    : Development/Tools
-License  : BSD-3-Clause GFDL-1.2 GPL-2.0 MIT
-Requires: libkdegames-lib
-Requires: libkdegames-data
-Requires: libkdegames-license
-Requires: libkdegames-locales
+License  : BSD-3-Clause GFDL-1.2 GPL-2.0
+Requires: libkdegames-data = %{version}-%{release}
+Requires: libkdegames-lib = %{version}-%{release}
+Requires: libkdegames-license = %{version}-%{release}
+Requires: libkdegames-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kdnssd-dev
@@ -24,12 +24,19 @@ BuildRequires : kglobalaccel-dev
 BuildRequires : libsndfile-dev
 BuildRequires : libsndfile-extras
 BuildRequires : openal-soft-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 
 %description
-This directory contains the library for the kdegames package.
-It is a collection of functions used by some games or which
-are useful for other games.
+some thoughts and comments about the lib - usually for KGame hackers
+- setMin/MaxPlayers() etc. use KGameProperty::changeValue() which is slightly
+unclean but as these functions can only called by the ADMIN it doesn't matter.
+- AB: KGamePropertyList && KGamePropertyArray:
+for PolicyClean||PolicyDirty the values are streamed into a QDataStream as usual
+for PolicyDirty||PolicyLocal the values are streamed as well but
+additionally command() is called immediately. The values are read from
+the stream there. This is some kind of performance loss as it would be
+faster *not* to stream it but imediately call e.g. insert(). But it will
+probably save a *lot* of bugs!
 
 %package data
 Summary: data components for the libkdegames package.
@@ -42,9 +49,9 @@ data components for the libkdegames package.
 %package dev
 Summary: dev components for the libkdegames package.
 Group: Development
-Requires: libkdegames-lib
-Requires: libkdegames-data
-Provides: libkdegames-devel
+Requires: libkdegames-lib = %{version}-%{release}
+Requires: libkdegames-data = %{version}-%{release}
+Provides: libkdegames-devel = %{version}-%{release}
 
 %description dev
 dev components for the libkdegames package.
@@ -53,8 +60,8 @@ dev components for the libkdegames package.
 %package lib
 Summary: lib components for the libkdegames package.
 Group: Libraries
-Requires: libkdegames-data
-Requires: libkdegames-license
+Requires: libkdegames-data = %{version}-%{release}
+Requires: libkdegames-license = %{version}-%{release}
 
 %description lib
 lib components for the libkdegames package.
@@ -77,15 +84,15 @@ locales components for the libkdegames package.
 
 
 %prep
-%setup -q -n libkdegames-18.08.0
+%setup -q -n libkdegames-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535222285
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549907020
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
 make  %{?_smp_mflags}
@@ -96,16 +103,15 @@ export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-pushd clr-build ; make test ||: ; popd
+cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1535222285
+export SOURCE_DATE_EPOCH=1549907020
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/libkdegames
-cp COPYING %{buildroot}/usr/share/doc/libkdegames/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/doc/libkdegames/COPYING.DOC
-cp carddecks/svg-konqi-modern/COPYRIGHT %{buildroot}/usr/share/doc/libkdegames/carddecks_svg-konqi-modern_COPYRIGHT
-cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/doc/libkdegames/cmake_modules_COPYING-CMAKE-SCRIPTS
+mkdir -p %{buildroot}/usr/share/package-licenses/libkdegames
+cp COPYING %{buildroot}/usr/share/package-licenses/libkdegames/COPYING
+cp COPYING.DOC %{buildroot}/usr/share/package-licenses/libkdegames/COPYING.DOC
+cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/libkdegames/cmake_modules_COPYING-CMAKE-SCRIPTS
 pushd clr-build
 %make_install
 popd
@@ -172,6 +178,7 @@ popd
 /usr/share/carddecks/svg-xskat-german/german.svgz
 /usr/share/carddecks/svg-xskat-german/index.desktop
 /usr/share/kconf_update/kgthemeprovider-migration.upd
+/usr/share/xdg/libkdegames.categories
 
 %files dev
 %defattr(-,root,root,-)
@@ -252,11 +259,10 @@ popd
 /usr/lib64/qt5/qml/org/kde/games/core/qmldir
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/libkdegames/COPYING
-/usr/share/doc/libkdegames/COPYING.DOC
-/usr/share/doc/libkdegames/carddecks_svg-konqi-modern_COPYRIGHT
-/usr/share/doc/libkdegames/cmake_modules_COPYING-CMAKE-SCRIPTS
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/libkdegames/COPYING
+/usr/share/package-licenses/libkdegames/COPYING.DOC
+/usr/share/package-licenses/libkdegames/cmake_modules_COPYING-CMAKE-SCRIPTS
 
 %files locales -f libkdegames5.lang
 %defattr(-,root,root,-)
