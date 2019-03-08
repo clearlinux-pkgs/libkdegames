@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : libkdegames
-Version  : 18.12.2
-Release  : 2
-URL      : https://download.kde.org/stable/applications/18.12.2/src/libkdegames-18.12.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.2/src/libkdegames-18.12.2.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.2/src/libkdegames-18.12.2.tar.xz.sig
-Summary  : Common code and data for many KDE games
+Version  : 18.12.3
+Release  : 3
+URL      : https://download.kde.org/stable/applications/18.12.3/src/libkdegames-18.12.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.3/src/libkdegames-18.12.3.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.3/src/libkdegames-18.12.3.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0
 Requires: libkdegames-data = %{version}-%{release}
@@ -27,16 +27,9 @@ BuildRequires : openal-soft-dev
 BuildRequires : qtbase-dev mesa-dev
 
 %description
-some thoughts and comments about the lib - usually for KGame hackers
-- setMin/MaxPlayers() etc. use KGameProperty::changeValue() which is slightly
-unclean but as these functions can only called by the ADMIN it doesn't matter.
-- AB: KGamePropertyList && KGamePropertyArray:
-for PolicyClean||PolicyDirty the values are streamed into a QDataStream as usual
-for PolicyDirty||PolicyLocal the values are streamed as well but
-additionally command() is called immediately. The values are read from
-the stream there. This is some kind of performance loss as it would be
-faster *not* to stream it but imediately call e.g. insert(). But it will
-probably save a *lot* of bugs!
+This directory contains the library for the kdegames package.
+It is a collection of functions used by some games or which
+are useful for other games.
 
 %package data
 Summary: data components for the libkdegames package.
@@ -84,18 +77,19 @@ locales components for the libkdegames package.
 
 
 %prep
-%setup -q -n libkdegames-18.12.2
+%setup -q -n libkdegames-18.12.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549907020
+export SOURCE_DATE_EPOCH=1552009955
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %check
@@ -106,7 +100,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1549907020
+export SOURCE_DATE_EPOCH=1552009955
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkdegames
 cp COPYING %{buildroot}/usr/share/package-licenses/libkdegames/COPYING
