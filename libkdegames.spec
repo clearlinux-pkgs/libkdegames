@@ -6,13 +6,13 @@
 #
 Name     : libkdegames
 Version  : 18.12.3
-Release  : 3
+Release  : 4
 URL      : https://download.kde.org/stable/applications/18.12.3/src/libkdegames-18.12.3.tar.xz
 Source0  : https://download.kde.org/stable/applications/18.12.3/src/libkdegames-18.12.3.tar.xz
 Source99 : https://download.kde.org/stable/applications/18.12.3/src/libkdegames-18.12.3.tar.xz.sig
-Summary  : No detailed summary available
+Summary  : Common code and data for many KDE games
 Group    : Development/Tools
-License  : BSD-3-Clause GFDL-1.2 GPL-2.0
+License  : BSD-3-Clause GFDL-1.2 GPL-2.0 MIT
 Requires: libkdegames-data = %{version}-%{release}
 Requires: libkdegames-lib = %{version}-%{release}
 Requires: libkdegames-license = %{version}-%{release}
@@ -27,9 +27,16 @@ BuildRequires : openal-soft-dev
 BuildRequires : qtbase-dev mesa-dev
 
 %description
-This directory contains the library for the kdegames package.
-It is a collection of functions used by some games or which
-are useful for other games.
+some thoughts and comments about the lib - usually for KGame hackers
+- setMin/MaxPlayers() etc. use KGameProperty::changeValue() which is slightly
+unclean but as these functions can only called by the ADMIN it doesn't matter.
+- AB: KGamePropertyList && KGamePropertyArray:
+for PolicyClean||PolicyDirty the values are streamed into a QDataStream as usual
+for PolicyDirty||PolicyLocal the values are streamed as well but
+additionally command() is called immediately. The values are read from
+the stream there. This is some kind of performance loss as it would be
+faster *not* to stream it but imediately call e.g. insert(). But it will
+probably save a *lot* of bugs!
 
 %package data
 Summary: data components for the libkdegames package.
@@ -45,6 +52,7 @@ Group: Development
 Requires: libkdegames-lib = %{version}-%{release}
 Requires: libkdegames-data = %{version}-%{release}
 Provides: libkdegames-devel = %{version}-%{release}
+Requires: libkdegames = %{version}-%{release}
 
 %description dev
 dev components for the libkdegames package.
@@ -84,12 +92,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552009955
+export SOURCE_DATE_EPOCH=1555353493
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %check
@@ -100,11 +107,13 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1552009955
+export SOURCE_DATE_EPOCH=1555353493
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkdegames
 cp COPYING %{buildroot}/usr/share/package-licenses/libkdegames/COPYING
 cp COPYING.DOC %{buildroot}/usr/share/package-licenses/libkdegames/COPYING.DOC
+cp carddecks/svg-konqi-modern/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/carddecks_svg-konqi-modern_COPYRIGHT
+cp carddecks/svg-xskat-german/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/carddecks_svg-xskat-german_COPYRIGHT
 cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/libkdegames/cmake_modules_COPYING-CMAKE-SCRIPTS
 pushd clr-build
 %make_install
@@ -256,6 +265,8 @@ popd
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/libkdegames/COPYING
 /usr/share/package-licenses/libkdegames/COPYING.DOC
+/usr/share/package-licenses/libkdegames/carddecks_svg-konqi-modern_COPYRIGHT
+/usr/share/package-licenses/libkdegames/carddecks_svg-xskat-german_COPYRIGHT
 /usr/share/package-licenses/libkdegames/cmake_modules_COPYING-CMAKE-SCRIPTS
 
 %files locales -f libkdegames5.lang
