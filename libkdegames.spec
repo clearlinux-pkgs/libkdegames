@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : libkdegames
-Version  : 18.12.3
-Release  : 4
-URL      : https://download.kde.org/stable/applications/18.12.3/src/libkdegames-18.12.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.3/src/libkdegames-18.12.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.3/src/libkdegames-18.12.3.tar.xz.sig
+Version  : 19.04.0
+Release  : 5
+URL      : https://download.kde.org/stable/applications/19.04.0/src/libkdegames-19.04.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.0/src/libkdegames-19.04.0.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.0/src/libkdegames-19.04.0.tar.xz.sig
 Summary  : Common code and data for many KDE games
 Group    : Development/Tools
-License  : BSD-3-Clause GFDL-1.2 GPL-2.0 MIT
+License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.1 MIT
 Requires: libkdegames-data = %{version}-%{release}
 Requires: libkdegames-lib = %{version}-%{release}
 Requires: libkdegames-license = %{version}-%{release}
@@ -85,14 +85,14 @@ locales components for the libkdegames package.
 
 
 %prep
-%setup -q -n libkdegames-18.12.3
+%setup -q -n libkdegames-19.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1555353493
+export SOURCE_DATE_EPOCH=1555623716
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -107,12 +107,15 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1555353493
+export SOURCE_DATE_EPOCH=1555623716
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkdegames
 cp COPYING %{buildroot}/usr/share/package-licenses/libkdegames/COPYING
 cp COPYING.DOC %{buildroot}/usr/share/package-licenses/libkdegames/COPYING.DOC
 cp carddecks/svg-konqi-modern/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/carddecks_svg-konqi-modern_COPYRIGHT
+cp carddecks/svg-standard/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/carddecks_svg-standard_COPYRIGHT
+cp carddecks/svg-tigullio-international/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/carddecks_svg-tigullio-international_COPYRIGHT
+cp carddecks/svg-xskat-french/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/carddecks_svg-xskat-french_COPYRIGHT
 cp carddecks/svg-xskat-german/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/carddecks_svg-xskat-german_COPYRIGHT
 cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/libkdegames/cmake_modules_COPYING-CMAKE-SCRIPTS
 pushd clr-build
@@ -266,6 +269,9 @@ popd
 /usr/share/package-licenses/libkdegames/COPYING
 /usr/share/package-licenses/libkdegames/COPYING.DOC
 /usr/share/package-licenses/libkdegames/carddecks_svg-konqi-modern_COPYRIGHT
+/usr/share/package-licenses/libkdegames/carddecks_svg-standard_COPYRIGHT
+/usr/share/package-licenses/libkdegames/carddecks_svg-tigullio-international_COPYRIGHT
+/usr/share/package-licenses/libkdegames/carddecks_svg-xskat-french_COPYRIGHT
 /usr/share/package-licenses/libkdegames/carddecks_svg-xskat-german_COPYRIGHT
 /usr/share/package-licenses/libkdegames/cmake_modules_COPYING-CMAKE-SCRIPTS
 
