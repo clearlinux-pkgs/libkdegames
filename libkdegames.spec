@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : libkdegames
-Version  : 19.04.0
-Release  : 6
-URL      : https://download.kde.org/stable/applications/19.04.0/src/libkdegames-19.04.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.0/src/libkdegames-19.04.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.0/src/libkdegames-19.04.0.tar.xz.sig
+Version  : 19.04.1
+Release  : 7
+URL      : https://download.kde.org/stable/applications/19.04.1/src/libkdegames-19.04.1.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.1/src/libkdegames-19.04.1.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.1/src/libkdegames-19.04.1.tar.xz.sig
 Summary  : Common code and data for many KDE games
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.1 MIT
@@ -53,6 +53,7 @@ Requires: libkdegames-lib = %{version}-%{release}
 Requires: libkdegames-data = %{version}-%{release}
 Provides: libkdegames-devel = %{version}-%{release}
 Requires: libkdegames = %{version}-%{release}
+Requires: libkdegames = %{version}-%{release}
 
 %description dev
 dev components for the libkdegames package.
@@ -85,14 +86,14 @@ locales components for the libkdegames package.
 
 
 %prep
-%setup -q -n libkdegames-19.04.0
+%setup -q -n libkdegames-19.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1557039135
+export SOURCE_DATE_EPOCH=1557458183
 mkdir -p clr-build
 pushd clr-build
 export AR=gcc-ar
@@ -114,7 +115,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1557039135
+export SOURCE_DATE_EPOCH=1557458183
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkdegames
 cp COPYING %{buildroot}/usr/share/package-licenses/libkdegames/COPYING
