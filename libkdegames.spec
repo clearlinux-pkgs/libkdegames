@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : libkdegames
-Version  : 19.04.3
-Release  : 9
-URL      : https://download.kde.org/stable/applications/19.04.3/src/libkdegames-19.04.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.3/src/libkdegames-19.04.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.3/src/libkdegames-19.04.3.tar.xz.sig
+Version  : 19.08.0
+Release  : 10
+URL      : https://download.kde.org/stable/applications/19.08.0/src/libkdegames-19.08.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.0/src/libkdegames-19.08.0.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.0/src/libkdegames-19.08.0.tar.xz.sig
 Summary  : Common code and data for many KDE games
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.1 MIT
@@ -86,16 +86,17 @@ locales components for the libkdegames package.
 
 
 %prep
-%setup -q -n libkdegames-19.04.3
+%setup -q -n libkdegames-19.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562886139
+export SOURCE_DATE_EPOCH=1565912841
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -116,7 +117,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1562886139
+export SOURCE_DATE_EPOCH=1565912841
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkdegames
 cp COPYING %{buildroot}/usr/share/package-licenses/libkdegames/COPYING
@@ -193,7 +194,7 @@ popd
 /usr/share/carddecks/svg-xskat-german/german.svgz
 /usr/share/carddecks/svg-xskat-german/index.desktop
 /usr/share/kconf_update/kgthemeprovider-migration.upd
-/usr/share/xdg/libkdegames.categories
+/usr/share/qlogging-categories5/libkdegames.categories
 
 %files dev
 %defattr(-,root,root,-)
@@ -266,7 +267,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5KDEGames.so.7
-/usr/lib64/libKF5KDEGames.so.7.0.0
+/usr/lib64/libKF5KDEGames.so.7.1.0
 /usr/lib64/libKF5KDEGamesPrivate.so.1
 /usr/lib64/libKF5KDEGamesPrivate.so.1.0.0
 /usr/lib64/qt5/qml/org/kde/games/core/KgItem.qml
