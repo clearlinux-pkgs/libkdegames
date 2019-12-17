@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : libkdegames
-Version  : 19.08.3
-Release  : 13
-URL      : https://download.kde.org/stable/applications/19.08.3/src/libkdegames-19.08.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.08.3/src/libkdegames-19.08.3.tar.xz
-Source1 : https://download.kde.org/stable/applications/19.08.3/src/libkdegames-19.08.3.tar.xz.sig
+Version  : 19.12.0
+Release  : 14
+URL      : https://download.kde.org/stable/release-service/19.12.0/src/libkdegames-19.12.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/19.12.0/src/libkdegames-19.12.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/19.12.0/src/libkdegames-19.12.0.tar.xz.sig
 Summary  : Common code and data for many KDE games
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.1 MIT
@@ -86,14 +86,15 @@ locales components for the libkdegames package.
 
 
 %prep
-%setup -q -n libkdegames-19.08.3
+%setup -q -n libkdegames-19.12.0
+cd %{_builddir}/libkdegames-19.12.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573189667
+export SOURCE_DATE_EPOCH=1576579485
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -117,17 +118,17 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1573189667
+export SOURCE_DATE_EPOCH=1576579485
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkdegames
-cp %{_builddir}/libkdegames-19.08.3/COPYING %{buildroot}/usr/share/package-licenses/libkdegames/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/libkdegames-19.08.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/libkdegames/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
-cp %{_builddir}/libkdegames-19.08.3/carddecks/svg-konqi-modern/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/5573560dd763dfa71382a7b14fc7016fe877f9b9
-cp %{_builddir}/libkdegames-19.08.3/carddecks/svg-standard/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/8d92c816e421da0e573f208ff54beab223dc2de4
-cp %{_builddir}/libkdegames-19.08.3/carddecks/svg-tigullio-international/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/0525f48093a421a78d3524e598e8fee0cb5d4886
-cp %{_builddir}/libkdegames-19.08.3/carddecks/svg-xskat-french/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/33f6ef5ae6fc21b42ca7d9d1aeb7390aca7366af
-cp %{_builddir}/libkdegames-19.08.3/carddecks/svg-xskat-german/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/f2324384bebcce4eaf3d153583f0eb2caf6960a0
-cp %{_builddir}/libkdegames-19.08.3/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/libkdegames/ff3ed70db4739b3c6747c7f624fe2bad70802987
+cp %{_builddir}/libkdegames-19.12.0/COPYING %{buildroot}/usr/share/package-licenses/libkdegames/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/libkdegames-19.12.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/libkdegames/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+cp %{_builddir}/libkdegames-19.12.0/carddecks/svg-konqi-modern/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/5573560dd763dfa71382a7b14fc7016fe877f9b9
+cp %{_builddir}/libkdegames-19.12.0/carddecks/svg-standard/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/8d92c816e421da0e573f208ff54beab223dc2de4
+cp %{_builddir}/libkdegames-19.12.0/carddecks/svg-tigullio-international/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/0525f48093a421a78d3524e598e8fee0cb5d4886
+cp %{_builddir}/libkdegames-19.12.0/carddecks/svg-xskat-french/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/33f6ef5ae6fc21b42ca7d9d1aeb7390aca7366af
+cp %{_builddir}/libkdegames-19.12.0/carddecks/svg-xskat-german/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/f2324384bebcce4eaf3d153583f0eb2caf6960a0
+cp %{_builddir}/libkdegames-19.12.0/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/libkdegames/ff3ed70db4739b3c6747c7f624fe2bad70802987
 pushd clr-build
 %make_install
 popd
@@ -267,7 +268,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5KDEGames.so.7
-/usr/lib64/libKF5KDEGames.so.7.1.0
+/usr/lib64/libKF5KDEGames.so.7.2.0
 /usr/lib64/libKF5KDEGamesPrivate.so.1
 /usr/lib64/libKF5KDEGamesPrivate.so.1.0.0
 /usr/lib64/qt5/qml/org/kde/games/core/KgItem.qml
