@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : libkdegames
-Version  : 20.04.0
-Release  : 18
-URL      : https://download.kde.org/stable/release-service/20.04.0/src/libkdegames-20.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.0/src/libkdegames-20.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.0/src/libkdegames-20.04.0.tar.xz.sig
-Summary  : Common code and data for many KDE games
+Version  : 20.04.1
+Release  : 19
+URL      : https://download.kde.org/stable/release-service/20.04.1/src/libkdegames-20.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.1/src/libkdegames-20.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.1/src/libkdegames-20.04.1.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.1 MIT
 Requires: libkdegames-data = %{version}-%{release}
@@ -19,6 +19,7 @@ Requires: libkdegames-license = %{version}-%{release}
 Requires: libkdegames-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : extra-cmake-modules-data
 BuildRequires : kdnssd-dev
 BuildRequires : kglobalaccel-dev
 BuildRequires : libsndfile-dev
@@ -27,16 +28,9 @@ BuildRequires : openal-soft-dev
 BuildRequires : qtbase-dev mesa-dev
 
 %description
-some thoughts and comments about the lib - usually for KGame hackers
-- setMin/MaxPlayers() etc. use KGameProperty::changeValue() which is slightly
-unclean but as these functions can only called by the ADMIN it doesn't matter.
-- AB: KGamePropertyList && KGamePropertyArray:
-for PolicyClean||PolicyDirty the values are streamed into a QDataStream as usual
-for PolicyDirty||PolicyLocal the values are streamed as well but
-additionally command() is called immediately. The values are read from
-the stream there. This is some kind of performance loss as it would be
-faster *not* to stream it but imediately call e.g. insert(). But it will
-probably save a *lot* of bugs!
+This directory contains the library for the kdegames package.
+It is a collection of functions used by some games or which
+are useful for other games.
 
 %package data
 Summary: data components for the libkdegames package.
@@ -52,7 +46,6 @@ Group: Development
 Requires: libkdegames-lib = %{version}-%{release}
 Requires: libkdegames-data = %{version}-%{release}
 Provides: libkdegames-devel = %{version}-%{release}
-Requires: libkdegames = %{version}-%{release}
 Requires: libkdegames = %{version}-%{release}
 
 %description dev
@@ -86,25 +79,24 @@ locales components for the libkdegames package.
 
 
 %prep
-%setup -q -n libkdegames-20.04.0
-cd %{_builddir}/libkdegames-20.04.0
+%setup -q -n libkdegames-20.04.1
+cd %{_builddir}/libkdegames-20.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1587681957
+export SOURCE_DATE_EPOCH=1589835551
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
@@ -118,17 +110,17 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 cd clr-build; make test || :
 
 %install
-export SOURCE_DATE_EPOCH=1587681957
+export SOURCE_DATE_EPOCH=1589835551
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkdegames
-cp %{_builddir}/libkdegames-20.04.0/COPYING %{buildroot}/usr/share/package-licenses/libkdegames/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/libkdegames-20.04.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/libkdegames/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
-cp %{_builddir}/libkdegames-20.04.0/carddecks/svg-konqi-modern/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/5573560dd763dfa71382a7b14fc7016fe877f9b9
-cp %{_builddir}/libkdegames-20.04.0/carddecks/svg-standard/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/8d92c816e421da0e573f208ff54beab223dc2de4
-cp %{_builddir}/libkdegames-20.04.0/carddecks/svg-tigullio-international/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/0525f48093a421a78d3524e598e8fee0cb5d4886
-cp %{_builddir}/libkdegames-20.04.0/carddecks/svg-xskat-french/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/33f6ef5ae6fc21b42ca7d9d1aeb7390aca7366af
-cp %{_builddir}/libkdegames-20.04.0/carddecks/svg-xskat-german/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/f2324384bebcce4eaf3d153583f0eb2caf6960a0
-cp %{_builddir}/libkdegames-20.04.0/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/libkdegames/ff3ed70db4739b3c6747c7f624fe2bad70802987
+cp %{_builddir}/libkdegames-20.04.1/COPYING %{buildroot}/usr/share/package-licenses/libkdegames/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/libkdegames-20.04.1/COPYING.DOC %{buildroot}/usr/share/package-licenses/libkdegames/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+cp %{_builddir}/libkdegames-20.04.1/carddecks/svg-konqi-modern/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/5573560dd763dfa71382a7b14fc7016fe877f9b9
+cp %{_builddir}/libkdegames-20.04.1/carddecks/svg-standard/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/8d92c816e421da0e573f208ff54beab223dc2de4
+cp %{_builddir}/libkdegames-20.04.1/carddecks/svg-tigullio-international/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/0525f48093a421a78d3524e598e8fee0cb5d4886
+cp %{_builddir}/libkdegames-20.04.1/carddecks/svg-xskat-french/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/33f6ef5ae6fc21b42ca7d9d1aeb7390aca7366af
+cp %{_builddir}/libkdegames-20.04.1/carddecks/svg-xskat-german/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/f2324384bebcce4eaf3d153583f0eb2caf6960a0
+cp %{_builddir}/libkdegames-20.04.1/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/libkdegames/ff3ed70db4739b3c6747c7f624fe2bad70802987
 pushd clr-build
 %make_install
 popd
