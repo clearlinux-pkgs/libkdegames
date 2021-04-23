@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : libkdegames
-Version  : 20.12.3
-Release  : 28
-URL      : https://download.kde.org/stable/release-service/20.12.3/src/libkdegames-20.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.12.3/src/libkdegames-20.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.12.3/src/libkdegames-20.12.3.tar.xz.sig
+Version  : 21.04.0
+Release  : 29
+URL      : https://download.kde.org/stable/release-service/21.04.0/src/libkdegames-21.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.04.0/src/libkdegames-21.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.04.0/src/libkdegames-21.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.1 MIT
@@ -21,10 +21,8 @@ BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
 BuildRequires : kdnssd-dev
-BuildRequires : kglobalaccel-dev
 BuildRequires : libsndfile-dev
 BuildRequires : openal-soft-dev
-BuildRequires : qtbase-dev mesa-dev
 
 %description
 This directory contains the library for the kdegames package.
@@ -78,15 +76,15 @@ locales components for the libkdegames package.
 
 
 %prep
-%setup -q -n libkdegames-20.12.3
-cd %{_builddir}/libkdegames-20.12.3
+%setup -q -n libkdegames-21.04.0
+cd %{_builddir}/libkdegames-21.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1618649075
+export SOURCE_DATE_EPOCH=1619200926
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -102,17 +100,17 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1618649075
+export SOURCE_DATE_EPOCH=1619200926
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkdegames
-cp %{_builddir}/libkdegames-20.12.3/COPYING %{buildroot}/usr/share/package-licenses/libkdegames/4cc77b90af91e615a64ae04893fdffa7939db84c
-cp %{_builddir}/libkdegames-20.12.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/libkdegames/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
-cp %{_builddir}/libkdegames-20.12.3/carddecks/svg-konqi-modern/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/5573560dd763dfa71382a7b14fc7016fe877f9b9
-cp %{_builddir}/libkdegames-20.12.3/carddecks/svg-standard/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/8d92c816e421da0e573f208ff54beab223dc2de4
-cp %{_builddir}/libkdegames-20.12.3/carddecks/svg-tigullio-international/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/0525f48093a421a78d3524e598e8fee0cb5d4886
-cp %{_builddir}/libkdegames-20.12.3/carddecks/svg-xskat-french/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/33f6ef5ae6fc21b42ca7d9d1aeb7390aca7366af
-cp %{_builddir}/libkdegames-20.12.3/carddecks/svg-xskat-german/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/f2324384bebcce4eaf3d153583f0eb2caf6960a0
-cp %{_builddir}/libkdegames-20.12.3/cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/libkdegames/ff3ed70db4739b3c6747c7f624fe2bad70802987
+cp %{_builddir}/libkdegames-21.04.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/libkdegames/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/libkdegames-21.04.0/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/libkdegames/7697008f58568e61e7598e796eafc2a997503fde
+cp %{_builddir}/libkdegames-21.04.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/libkdegames/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/libkdegames-21.04.0/src/carddecks/svg-konqi-modern/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/5573560dd763dfa71382a7b14fc7016fe877f9b9
+cp %{_builddir}/libkdegames-21.04.0/src/carddecks/svg-standard/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/8d92c816e421da0e573f208ff54beab223dc2de4
+cp %{_builddir}/libkdegames-21.04.0/src/carddecks/svg-tigullio-international/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/0525f48093a421a78d3524e598e8fee0cb5d4886
+cp %{_builddir}/libkdegames-21.04.0/src/carddecks/svg-xskat-french/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/33f6ef5ae6fc21b42ca7d9d1aeb7390aca7366af
+cp %{_builddir}/libkdegames-21.04.0/src/carddecks/svg-xskat-german/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/f2324384bebcce4eaf3d153583f0eb2caf6960a0
 pushd clr-build
 %make_install
 popd
@@ -183,22 +181,22 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/KF5/KF5KDEGames/KDE/KGameClock
-/usr/include/KF5/KF5KDEGames/KDE/KGamePopupItem
-/usr/include/KF5/KF5KDEGames/KDE/KGameRenderedItem
-/usr/include/KF5/KF5KDEGames/KDE/KGameRenderedObjectItem
-/usr/include/KF5/KF5KDEGames/KDE/KGameRenderer
-/usr/include/KF5/KF5KDEGames/KDE/KGameRendererClient
-/usr/include/KF5/KF5KDEGames/KDE/KHighscore
-/usr/include/KF5/KF5KDEGames/KDE/KScoreDialog
-/usr/include/KF5/KF5KDEGames/KDE/KStandardGameAction
-/usr/include/KF5/KF5KDEGames/KDE/KgAudioScene
-/usr/include/KF5/KF5KDEGames/KDE/KgDeclarativeView
-/usr/include/KF5/KF5KDEGames/KDE/KgDifficulty
-/usr/include/KF5/KF5KDEGames/KDE/KgSound
-/usr/include/KF5/KF5KDEGames/KDE/KgTheme
-/usr/include/KF5/KF5KDEGames/KDE/KgThemeProvider
-/usr/include/KF5/KF5KDEGames/KDE/KgThemeSelector
+/usr/include/KF5/KF5KDEGames/KGameClock
+/usr/include/KF5/KF5KDEGames/KGamePopupItem
+/usr/include/KF5/KF5KDEGames/KGameRenderedItem
+/usr/include/KF5/KF5KDEGames/KGameRenderedObjectItem
+/usr/include/KF5/KF5KDEGames/KGameRenderer
+/usr/include/KF5/KF5KDEGames/KGameRendererClient
+/usr/include/KF5/KF5KDEGames/KHighscore
+/usr/include/KF5/KF5KDEGames/KScoreDialog
+/usr/include/KF5/KF5KDEGames/KStandardGameAction
+/usr/include/KF5/KF5KDEGames/KgAudioScene
+/usr/include/KF5/KF5KDEGames/KgDeclarativeView
+/usr/include/KF5/KF5KDEGames/KgDifficulty
+/usr/include/KF5/KF5KDEGames/KgSound
+/usr/include/KF5/KF5KDEGames/KgTheme
+/usr/include/KF5/KF5KDEGames/KgThemeProvider
+/usr/include/KF5/KF5KDEGames/KgThemeSelector
 /usr/include/KF5/KF5KDEGames/highscore/khighscore.h
 /usr/include/KF5/KF5KDEGames/highscore/kscoredialog.h
 /usr/include/KF5/KF5KDEGames/kdegames_version.h
@@ -243,17 +241,17 @@ popd
 /usr/include/KF5/KF5KDEGames/libkdegamesprivate/libkdegamesprivate_export.h
 /usr/lib64/cmake/KF5KDEGames/KF5KDEGamesConfig.cmake
 /usr/lib64/cmake/KF5KDEGames/KF5KDEGamesConfigVersion.cmake
-/usr/lib64/cmake/KF5KDEGames/KF5KDEGamesLibraryDepends-relwithdebinfo.cmake
-/usr/lib64/cmake/KF5KDEGames/KF5KDEGamesLibraryDepends.cmake
+/usr/lib64/cmake/KF5KDEGames/KF5KDEGamesTargets-relwithdebinfo.cmake
+/usr/lib64/cmake/KF5KDEGames/KF5KDEGamesTargets.cmake
 /usr/lib64/libKF5KDEGames.so
 /usr/lib64/libKF5KDEGamesPrivate.so
 
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5KDEGames.so.7
-/usr/lib64/libKF5KDEGames.so.7.2.0
-/usr/lib64/libKF5KDEGamesPrivate.so.1
-/usr/lib64/libKF5KDEGamesPrivate.so.1.0.0
+/usr/lib64/libKF5KDEGames.so.7.3.0
+/usr/lib64/libKF5KDEGamesPrivate.so.7
+/usr/lib64/libKF5KDEGamesPrivate.so.7.3.0
 /usr/lib64/qt5/qml/org/kde/games/core/KgItem.qml
 /usr/lib64/qt5/qml/org/kde/games/core/libcorebindingsplugin.so
 /usr/lib64/qt5/qml/org/kde/games/core/qmldir
@@ -262,12 +260,12 @@ popd
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/libkdegames/0525f48093a421a78d3524e598e8fee0cb5d4886
 /usr/share/package-licenses/libkdegames/33f6ef5ae6fc21b42ca7d9d1aeb7390aca7366af
-/usr/share/package-licenses/libkdegames/4cc77b90af91e615a64ae04893fdffa7939db84c
+/usr/share/package-licenses/libkdegames/3e8971c6c5f16674958913a94a36b1ea7a00ac46
 /usr/share/package-licenses/libkdegames/5573560dd763dfa71382a7b14fc7016fe877f9b9
+/usr/share/package-licenses/libkdegames/7697008f58568e61e7598e796eafc2a997503fde
 /usr/share/package-licenses/libkdegames/8d92c816e421da0e573f208ff54beab223dc2de4
-/usr/share/package-licenses/libkdegames/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+/usr/share/package-licenses/libkdegames/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
 /usr/share/package-licenses/libkdegames/f2324384bebcce4eaf3d153583f0eb2caf6960a0
-/usr/share/package-licenses/libkdegames/ff3ed70db4739b3c6747c7f624fe2bad70802987
 
 %files locales -f libkdegames5.lang
 %defattr(-,root,root,-)
