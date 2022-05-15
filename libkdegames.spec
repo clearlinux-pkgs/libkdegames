@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : libkdegames
-Version  : 22.04.0
-Release  : 39
-URL      : https://download.kde.org/stable/release-service/22.04.0/src/libkdegames-22.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/22.04.0/src/libkdegames-22.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/22.04.0/src/libkdegames-22.04.0.tar.xz.sig
+Version  : 22.04.1
+Release  : 40
+URL      : https://download.kde.org/stable/release-service/22.04.1/src/libkdegames-22.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.04.1/src/libkdegames-22.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.04.1/src/libkdegames-22.04.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause CC0-1.0 GFDL-1.2 GPL-2.0 ISC LGPL-2.0 LGPL-2.1 MIT
@@ -76,15 +76,15 @@ locales components for the libkdegames package.
 
 
 %prep
-%setup -q -n libkdegames-22.04.0
-cd %{_builddir}/libkdegames-22.04.0
+%setup -q -n libkdegames-22.04.1
+cd %{_builddir}/libkdegames-22.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1650657593
+export SOURCE_DATE_EPOCH=1652637391
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -100,23 +100,23 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1650657593
+export SOURCE_DATE_EPOCH=1652637391
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkdegames
-cp %{_builddir}/libkdegames-22.04.0/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/libkdegames/29fb05b49e12a380545499938c4879440bd8851e
-cp %{_builddir}/libkdegames-22.04.0/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/libkdegames/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee
-cp %{_builddir}/libkdegames-22.04.0/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/libkdegames/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
-cp %{_builddir}/libkdegames-22.04.0/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/libkdegames/8287b608d3fa40ef401339fd907ca1260c964123
-cp %{_builddir}/libkdegames-22.04.0/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/libkdegames/7697008f58568e61e7598e796eafc2a997503fde
-cp %{_builddir}/libkdegames-22.04.0/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/libkdegames/3e8971c6c5f16674958913a94a36b1ea7a00ac46
-cp %{_builddir}/libkdegames-22.04.0/LICENSES/ICS.txt %{buildroot}/usr/share/package-licenses/libkdegames/221e6be04f1b020e012e7bd9e9e39b86fda17ba2
-cp %{_builddir}/libkdegames-22.04.0/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/libkdegames/a4c60b3fefda228cd7439d3565df043192fef137
-cp %{_builddir}/libkdegames-22.04.0/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/libkdegames/a4c60b3fefda228cd7439d3565df043192fef137
-cp %{_builddir}/libkdegames-22.04.0/src/carddecks/svg-konqi-modern/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/5573560dd763dfa71382a7b14fc7016fe877f9b9
-cp %{_builddir}/libkdegames-22.04.0/src/carddecks/svg-standard/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/8d92c816e421da0e573f208ff54beab223dc2de4
-cp %{_builddir}/libkdegames-22.04.0/src/carddecks/svg-tigullio-international/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/0525f48093a421a78d3524e598e8fee0cb5d4886
-cp %{_builddir}/libkdegames-22.04.0/src/carddecks/svg-xskat-french/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/33f6ef5ae6fc21b42ca7d9d1aeb7390aca7366af
-cp %{_builddir}/libkdegames-22.04.0/src/carddecks/svg-xskat-german/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/f2324384bebcce4eaf3d153583f0eb2caf6960a0
+cp %{_builddir}/libkdegames-22.04.1/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/libkdegames/29fb05b49e12a380545499938c4879440bd8851e
+cp %{_builddir}/libkdegames-22.04.1/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/libkdegames/52039e5c19c950d4c7d6ec5da42ebba2c6def7ee
+cp %{_builddir}/libkdegames-22.04.1/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/libkdegames/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
+cp %{_builddir}/libkdegames-22.04.1/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/libkdegames/8287b608d3fa40ef401339fd907ca1260c964123
+cp %{_builddir}/libkdegames-22.04.1/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/libkdegames/7697008f58568e61e7598e796eafc2a997503fde
+cp %{_builddir}/libkdegames-22.04.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/libkdegames/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/libkdegames-22.04.1/LICENSES/ICS.txt %{buildroot}/usr/share/package-licenses/libkdegames/221e6be04f1b020e012e7bd9e9e39b86fda17ba2
+cp %{_builddir}/libkdegames-22.04.1/LICENSES/LGPL-2.0-only.txt %{buildroot}/usr/share/package-licenses/libkdegames/a4c60b3fefda228cd7439d3565df043192fef137
+cp %{_builddir}/libkdegames-22.04.1/LICENSES/LGPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/libkdegames/a4c60b3fefda228cd7439d3565df043192fef137
+cp %{_builddir}/libkdegames-22.04.1/src/carddecks/svg-konqi-modern/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/5573560dd763dfa71382a7b14fc7016fe877f9b9
+cp %{_builddir}/libkdegames-22.04.1/src/carddecks/svg-standard/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/8d92c816e421da0e573f208ff54beab223dc2de4
+cp %{_builddir}/libkdegames-22.04.1/src/carddecks/svg-tigullio-international/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/0525f48093a421a78d3524e598e8fee0cb5d4886
+cp %{_builddir}/libkdegames-22.04.1/src/carddecks/svg-xskat-french/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/33f6ef5ae6fc21b42ca7d9d1aeb7390aca7366af
+cp %{_builddir}/libkdegames-22.04.1/src/carddecks/svg-xskat-german/COPYRIGHT %{buildroot}/usr/share/package-licenses/libkdegames/f2324384bebcce4eaf3d153583f0eb2caf6960a0
 pushd clr-build
 %make_install
 popd
