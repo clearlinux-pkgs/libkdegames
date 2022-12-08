@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : libkdegames
-Version  : 22.08.3
-Release  : 46
-URL      : https://download.kde.org/stable/release-service/22.08.3/src/libkdegames-22.08.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/22.08.3/src/libkdegames-22.08.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/22.08.3/src/libkdegames-22.08.3.tar.xz.sig
+Version  : 22.12.0
+Release  : 47
+URL      : https://download.kde.org/stable/release-service/22.12.0/src/libkdegames-22.12.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.12.0/src/libkdegames-22.12.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.12.0/src/libkdegames-22.12.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause CC0-1.0 GFDL-1.2 GPL-2.0 ISC LGPL-2.0 LGPL-2.1 MIT
@@ -77,15 +77,15 @@ locales components for the libkdegames package.
 
 
 %prep
-%setup -q -n libkdegames-22.08.3
-cd %{_builddir}/libkdegames-22.08.3
+%setup -q -n libkdegames-22.12.0
+cd %{_builddir}/libkdegames-22.12.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1667858010
+export SOURCE_DATE_EPOCH=1670513508
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -101,7 +101,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1667858010
+export SOURCE_DATE_EPOCH=1670513508
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkdegames
 cp %{_builddir}/libkdegames-%{version}/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/libkdegames/29fb05b49e12a380545499938c4879440bd8851e || :
@@ -188,65 +188,65 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/KF5/KF5KDEGames/KGameClock
-/usr/include/KF5/KF5KDEGames/KGamePopupItem
-/usr/include/KF5/KF5KDEGames/KGameRenderedItem
-/usr/include/KF5/KF5KDEGames/KGameRenderedObjectItem
-/usr/include/KF5/KF5KDEGames/KGameRenderer
-/usr/include/KF5/KF5KDEGames/KGameRendererClient
-/usr/include/KF5/KF5KDEGames/KHighscore
-/usr/include/KF5/KF5KDEGames/KScoreDialog
-/usr/include/KF5/KF5KDEGames/KStandardGameAction
-/usr/include/KF5/KF5KDEGames/KgAudioScene
-/usr/include/KF5/KF5KDEGames/KgDeclarativeView
-/usr/include/KF5/KF5KDEGames/KgDifficulty
-/usr/include/KF5/KF5KDEGames/KgDifficultyLevel
-/usr/include/KF5/KF5KDEGames/KgSound
-/usr/include/KF5/KF5KDEGames/KgTheme
-/usr/include/KF5/KF5KDEGames/KgThemeProvider
-/usr/include/KF5/KF5KDEGames/KgThemeSelector
-/usr/include/KF5/KF5KDEGames/highscore/khighscore.h
-/usr/include/KF5/KF5KDEGames/highscore/kscoredialog.h
-/usr/include/KF5/KF5KDEGames/kdegames_version.h
-/usr/include/KF5/KF5KDEGames/kgameclock.h
-/usr/include/KF5/KF5KDEGames/kgamepopupitem.h
-/usr/include/KF5/KF5KDEGames/kgamerendereditem.h
-/usr/include/KF5/KF5KDEGames/kgamerenderedobjectitem.h
-/usr/include/KF5/KF5KDEGames/kgamerenderer.h
-/usr/include/KF5/KF5KDEGames/kgamerendererclient.h
-/usr/include/KF5/KF5KDEGames/kgaudioscene.h
-/usr/include/KF5/KF5KDEGames/kgdeclarativeview.h
-/usr/include/KF5/KF5KDEGames/kgdifficulty.h
-/usr/include/KF5/KF5KDEGames/kgsound.h
-/usr/include/KF5/KF5KDEGames/kgtheme.h
-/usr/include/KF5/KF5KDEGames/kgthemeprovider.h
-/usr/include/KF5/KF5KDEGames/kgthemeselector.h
-/usr/include/KF5/KF5KDEGames/kstandardgameaction.h
-/usr/include/KF5/KF5KDEGames/libkdegames_capabilities.h
-/usr/include/KF5/KF5KDEGames/libkdegames_export.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kchatbase.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kchatbaseitemdelegate.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kchatbasemodel.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgame/kgame.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgame/kgamechat.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgame/kgameerror.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgame/kgameio.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgame/kgamemessage.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgame/kgamenetwork.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgame/kgameproperty.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgame/kgamepropertyhandler.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgame/kgamesequence.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgame/kgameversion.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgame/kmessageclient.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgame/kmessageio.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgame/kmessageserver.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgame/kplayer.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgamecanvas.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgamedifficulty.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgamesvgdocument.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgametheme.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/kgamethemeselector.h
-/usr/include/KF5/KF5KDEGames/libkdegamesprivate/libkdegamesprivate_export.h
+/usr/include/KF5/KDEGames/KGameClock
+/usr/include/KF5/KDEGames/KGamePopupItem
+/usr/include/KF5/KDEGames/KGameRenderedItem
+/usr/include/KF5/KDEGames/KGameRenderedObjectItem
+/usr/include/KF5/KDEGames/KGameRenderer
+/usr/include/KF5/KDEGames/KGameRendererClient
+/usr/include/KF5/KDEGames/KHighscore
+/usr/include/KF5/KDEGames/KScoreDialog
+/usr/include/KF5/KDEGames/KStandardGameAction
+/usr/include/KF5/KDEGames/KgAudioScene
+/usr/include/KF5/KDEGames/KgDeclarativeView
+/usr/include/KF5/KDEGames/KgDifficulty
+/usr/include/KF5/KDEGames/KgDifficultyLevel
+/usr/include/KF5/KDEGames/KgSound
+/usr/include/KF5/KDEGames/KgTheme
+/usr/include/KF5/KDEGames/KgThemeProvider
+/usr/include/KF5/KDEGames/KgThemeSelector
+/usr/include/KF5/KDEGames/highscore/khighscore.h
+/usr/include/KF5/KDEGames/highscore/kscoredialog.h
+/usr/include/KF5/KDEGames/kdegames_version.h
+/usr/include/KF5/KDEGames/kgameclock.h
+/usr/include/KF5/KDEGames/kgamepopupitem.h
+/usr/include/KF5/KDEGames/kgamerendereditem.h
+/usr/include/KF5/KDEGames/kgamerenderedobjectitem.h
+/usr/include/KF5/KDEGames/kgamerenderer.h
+/usr/include/KF5/KDEGames/kgamerendererclient.h
+/usr/include/KF5/KDEGames/kgaudioscene.h
+/usr/include/KF5/KDEGames/kgdeclarativeview.h
+/usr/include/KF5/KDEGames/kgdifficulty.h
+/usr/include/KF5/KDEGames/kgsound.h
+/usr/include/KF5/KDEGames/kgtheme.h
+/usr/include/KF5/KDEGames/kgthemeprovider.h
+/usr/include/KF5/KDEGames/kgthemeselector.h
+/usr/include/KF5/KDEGames/kstandardgameaction.h
+/usr/include/KF5/KDEGames/libkdegames_capabilities.h
+/usr/include/KF5/KDEGames/libkdegames_export.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kchatbase.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kchatbaseitemdelegate.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kchatbasemodel.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgame/kgame.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgame/kgamechat.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgame/kgameerror.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgame/kgameio.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgame/kgamemessage.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgame/kgamenetwork.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgame/kgameproperty.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgame/kgamepropertyhandler.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgame/kgamesequence.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgame/kgameversion.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgame/kmessageclient.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgame/kmessageio.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgame/kmessageserver.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgame/kplayer.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgamecanvas.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgamedifficulty.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgamesvgdocument.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgametheme.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/kgamethemeselector.h
+/usr/include/KF5/KDEGames/libkdegamesprivate/libkdegamesprivate_export.h
 /usr/lib64/cmake/KF5KDEGames/KF5KDEGamesConfig.cmake
 /usr/lib64/cmake/KF5KDEGames/KF5KDEGamesConfigVersion.cmake
 /usr/lib64/cmake/KF5KDEGames/KF5KDEGamesTargets-relwithdebinfo.cmake
@@ -257,9 +257,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libKF5KDEGames.so.7
-/usr/lib64/libKF5KDEGames.so.7.4.0
+/usr/lib64/libKF5KDEGames.so.7.5.0
 /usr/lib64/libKF5KDEGamesPrivate.so.7
-/usr/lib64/libKF5KDEGamesPrivate.so.7.4.0
+/usr/lib64/libKF5KDEGamesPrivate.so.7.5.0
 /usr/lib64/qt5/qml/org/kde/games/core/KgItem.qml
 /usr/lib64/qt5/qml/org/kde/games/core/libcorebindingsplugin.so
 /usr/lib64/qt5/qml/org/kde/games/core/qmldir
