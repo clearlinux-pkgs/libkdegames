@@ -7,7 +7,7 @@
 #
 Name     : libkdegames
 Version  : 23.04.1
-Release  : 53
+Release  : 54
 URL      : https://download.kde.org/stable/release-service/23.04.1/src/libkdegames-23.04.1.tar.xz
 Source0  : https://download.kde.org/stable/release-service/23.04.1/src/libkdegames-23.04.1.tar.xz
 Source1  : https://download.kde.org/stable/release-service/23.04.1/src/libkdegames-23.04.1.tar.xz.sig
@@ -89,7 +89,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1684777583
+export SOURCE_DATE_EPOCH=1685640500
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -122,7 +122,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1684777583
+export SOURCE_DATE_EPOCH=1685640500
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libkdegames
 cp %{_builddir}/libkdegames-%{version}/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/libkdegames/29fb05b49e12a380545499938c4879440bd8851e || :
@@ -213,8 +213,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKF5KDEGames.so
-/V3/usr/lib64/libKF5KDEGamesPrivate.so
 /usr/include/KF5/KDEGames/KGameClock
 /usr/include/KF5/KDEGames/KGamePopupItem
 /usr/include/KF5/KDEGames/KGameRenderedItem
@@ -283,9 +281,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKF5KDEGames.so.7
 /V3/usr/lib64/libKF5KDEGames.so.7.5.0
-/V3/usr/lib64/libKF5KDEGamesPrivate.so.7
 /V3/usr/lib64/libKF5KDEGamesPrivate.so.7.5.0
 /V3/usr/lib64/qt5/qml/org/kde/games/core/libcorebindingsplugin.so
 /usr/lib64/libKF5KDEGames.so.7
